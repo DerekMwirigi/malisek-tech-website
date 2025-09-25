@@ -37,7 +37,7 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/assets/malisek-logo.jpg" 
-              alt="Malisek Tech Solutions" 
+              alt="Malisek Tech" 
               className="h-10 w-auto"
             />
           </Link>

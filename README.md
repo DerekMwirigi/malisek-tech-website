@@ -1,8 +1,8 @@
-# Malisek Tech Solutions - E-commerce Platform
+# Malisek Tech - E-commerce Platform
 
 A modern, responsive Progressive Web App (PWA) for electronics and technology products built with React, TypeScript, and Tailwind CSS.
 
-![Malisek Tech Solutions](public/assets/malisek-logo.jpg)
+![Malisek Tech](public/assets/malisek-logo.jpg)
 
 ## 🚀 Technologies Used
 
@@ -108,7 +108,7 @@ src/
 1. **Clone the repository**
    ```bash
    git clone <YOUR_GIT_URL>
-   cd malisek-tech-solutions
+   cd malisek-tech
    ```
 
 2. **Install dependencies**
@@ -234,4 +234,4 @@ For support and questions:
 
 ---
 
-**Built with ❤️ for Malisek Tech Solutions**
+**Built with ❤️ for Malisek Tech**

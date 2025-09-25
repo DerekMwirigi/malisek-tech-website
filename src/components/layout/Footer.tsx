@@ -47,9 +47,9 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img 
+            <img 
                 src="/assets/malisek-logo.jpg" 
-                alt="Malisek Tech Solutions" 
+                alt="Malisek Tech" 
                 className="h-12 w-auto"
               />
             </div>
@@ -162,7 +162,7 @@ export const Footer = () => {
         <Separator className="my-8 opacity-20" />
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-60">
-          <p>© 2024 Malisek Tech Solutions Ltd. All rights reserved.</p>
+          <p>© 2024 Malisek Tech Ltd. All rights reserved.</p>
           
           <div className="flex items-center gap-6">
             <span>🔒 Secure Shopping</span>
