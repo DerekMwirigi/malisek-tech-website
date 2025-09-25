@@ -13,6 +13,9 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) => {
+  // Conversion rate: 1 USD = 150 KES
+  const usdToKes = (usd: number) => `KES ${Math.round(usd * 150).toLocaleString()}`;
+  const placeholderImg = '/api/placeholder/300/300';
   const [isImageLoading, setIsImageLoading] = useState(true);
   const { addToCart, addToWishlist, addToCompare, wishlist, compareList } = useCartStore();
   const { toast } = useToast();
@@ -93,10 +96,11 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
               <div className="absolute inset-0 shimmer rounded-lg" />
             )}
             <img
-              src={product.image}
+              src={product.image || placeholderImg}
               alt={product.name}
               className="w-full h-full object-cover"
               onLoad={() => setIsImageLoading(false)}
+              onError={e => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
             />
           </div>
           
@@ -111,10 +115,10 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Price:</span>
               <div className="text-right">
-                <span className="font-semibold text-primary">${product.price}</span>
+                <span className="font-semibold text-primary">{usdToKes(product.price)}</span>
                 {product.originalPrice && (
                   <span className="ml-2 text-sm text-muted-foreground line-through">
-                    ${product.originalPrice}
+                    {usdToKes(product.originalPrice)}
                   </span>
                 )}
               </div>
@@ -167,10 +171,11 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
             )}
             
             <img
-              src={product.image}
+              src={product.image || placeholderImg}
               alt={product.name}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               onLoad={() => setIsImageLoading(false)}
+              onError={e => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
             />
             
             {/* Badges */}
@@ -248,10 +253,10 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-primary">${product.price}</span>
+                <span className="text-lg font-bold text-primary">{usdToKes(product.price)}</span>
                 {product.originalPrice && (
                   <span className="text-sm text-muted-foreground line-through">
-                    ${product.originalPrice}
+                    {usdToKes(product.originalPrice)}
                   </span>
                 )}
               </div>

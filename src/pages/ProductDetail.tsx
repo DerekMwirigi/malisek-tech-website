@@ -11,6 +11,9 @@ import { ProductCard } from '@/components/product/ProductCard';
 import { useToast } from '@/hooks/use-toast';
 
 const ProductDetail = () => {
+  // Conversion rate: 1 USD = 150 KES
+  const usdToKes = (usd: number) => `KES ${Math.round(usd * 150).toLocaleString()}`;
+  const placeholderImg = '/api/placeholder/300/300';
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVariations, setSelectedVariations] = useState<Record<string, string>>({});
@@ -44,7 +47,9 @@ const ProductDetail = () => {
     );
   }
 
-  const images = product.images || [product.image, product.image, product.image];
+  const images = product.images && product.images.length > 0
+    ? product.images.map(img => img || placeholderImg)
+    : [product.image || placeholderImg, product.image || placeholderImg, product.image || placeholderImg];
   
   const handleAddToCart = () => {
     if (!product.inStock) {
@@ -148,9 +153,10 @@ const ProductDetail = () => {
         <div className="space-y-4">
           <div className="aspect-square relative overflow-hidden rounded-lg bg-muted">
             <img
-              src={images[selectedImage]}
+              src={images[selectedImage] || placeholderImg}
               alt={product.name}
               className="w-full h-full object-cover"
+              onError={e => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
             />
             
             {product.originalPrice && (
@@ -170,9 +176,10 @@ const ProductDetail = () => {
                 }`}
               >
                 <img
-                  src={image}
+                  src={image || placeholderImg}
                   alt={`${product.name} view ${index + 1}`}
                   className="w-full h-full object-cover"
+                  onError={e => { (e.currentTarget as HTMLImageElement).src = placeholderImg; }}
                 />
               </button>
             ))}
@@ -201,10 +208,10 @@ const ProductDetail = () => {
             </div>
 
             <div className="flex items-baseline gap-4 mb-6">
-              <span className="text-4xl font-bold text-primary">${product.price}</span>
+              <span className="text-4xl font-bold text-primary">{usdToKes(product.price)}</span>
               {product.originalPrice && (
                 <span className="text-xl text-muted-foreground line-through">
-                  ${product.originalPrice}
+                  {usdToKes(product.originalPrice)}
                 </span>
               )}
             </div>

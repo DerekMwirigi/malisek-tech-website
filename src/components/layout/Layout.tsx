@@ -1,3 +1,5 @@
+  // Conversion rate: 1 USD = 150 KES
+  const usdToKes = (usd: number) => Math.round(usd * 150);
 import { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
@@ -24,7 +26,7 @@ export const Layout = ({ children, showFilters = false }: LayoutProps) => {
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
     brands: [],
-    priceRange: [0, 5000],
+  priceRange: [0, 750000],
     rating: 0,
     inStock: false
   });

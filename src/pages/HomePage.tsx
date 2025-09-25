@@ -16,11 +16,13 @@ interface FilterState {
 }
 
 const HomePage = () => {
+  // Conversion rate: 1 USD = 150 KES
+  const usdToKes = (usd: number) => Math.round(usd * 150);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
     brands: [],
-    priceRange: [0, 5000],
+  priceRange: [0, 750000],
     rating: 0,
     inStock: false
   });
@@ -31,7 +33,7 @@ const HomePage = () => {
       return false;
     }
     
-    if (filters.priceRange[0] > product.price || filters.priceRange[1] < product.price) {
+    if (filters.priceRange[0] > usdToKes(product.price) || filters.priceRange[1] < usdToKes(product.price)) {
       return false;
     }
     
@@ -118,7 +120,7 @@ const HomePage = () => {
                 onClick={() => setFilters({
                   categories: [],
                   brands: [],
-                  priceRange: [0, 5000],
+                  priceRange: [0, 750000],
                   rating: 0,
                   inStock: false
                 })}

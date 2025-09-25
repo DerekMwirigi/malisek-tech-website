@@ -10,7 +10,7 @@ import { useTheme } from 'next-themes';
 const AdStrip = () => (
   <div className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground py-2 text-center text-sm font-medium">
     <div className="container mx-auto px-4">
-      🎉 Free shipping on orders over $500 | 30-day return policy | 24/7 customer support
+      🎉 Free shipping on orders over KES 75,000 | 30-day return policy | 24/7 customer support
     </div>
   </div>
 );
